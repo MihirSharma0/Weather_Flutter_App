@@ -4,7 +4,7 @@
 
     
     <application
-        android:label="first_project_dart"
+        android:label="Weather App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
