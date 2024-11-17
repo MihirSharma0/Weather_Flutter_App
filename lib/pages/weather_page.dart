@@ -4,7 +4,6 @@ import '../models/weather_model.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
 
@@ -31,21 +30,26 @@ class _WeatherPageState extends State<WeatherPage> {
 
   String getWeatherAnimation(String? mainCondition) {
     if (mainCondition == null) {
-      return 'assets/sunny.json';
+      return 'assets/loading.json';
     }
 
     switch (mainCondition.toLowerCase()) {
       case 'clouds':
-       return 'assets/cloud.json';
-       case 'mist':
-       return 'assets/cloud.json';
-       case 'haze':
+      case 'mist':
+      case 'haze':
         return 'assets/cloud.json';
       case 'thunderstorm':
+      case 'snow':
+      case 'dust':
+      case 'sand':
         return 'assets/thunder.json';
-      case 'fog':
       case 'rain':
+      case 'drizzle':
+      case 'fog':
+      case 'smoke':
         return 'assets/rain.json';
+      case 'clear':
+        return 'assets/sunny.json';
       default:
         return 'assets/sunny.json';
     }
@@ -60,15 +64,15 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-backgroundColor: const Color.fromARGB(255, 237, 157, 157),
+      backgroundColor: const Color.fromARGB(255, 237, 157, 157),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-            'assets/location.svg',
-            width: 80,
-            height: 80,
+              'assets/location.svg',
+              width: 80,
+              height: 80,
             ),
             Text(_weather?.cityName ?? "Loading city name..."),
             Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
@@ -80,5 +84,3 @@ backgroundColor: const Color.fromARGB(255, 237, 157, 157),
     );
   }
 }
-
-
